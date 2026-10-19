@@ -71,7 +71,7 @@ virtual terminal(VYT) to allow access using protocols like SSH or Telnet
 
 **sw1(config)# line vty 0 4**
 
-**sw1(config-line)# transport input ssh telnet**
+**sw1(config-line)# transport input ssh telnet** 		(in packet tracer use **transport input all**)
 
 **sw1(config-line)#exit**
 
