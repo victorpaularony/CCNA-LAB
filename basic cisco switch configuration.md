@@ -91,13 +91,89 @@ virtual terminal(VYT) to allow access using protocols like SSH or Telnet
 
 
 
+
+
+
+
 **Save the Configuration**
 
 &#x09;All configs are written to the RAM and if switch reboots the configs disappear unless saved to NVRAM(startup configuration ):
 
+
+
+**To local startup memory (NVRAM)**
+
 **sw1(config)# exit**
 
 **sw1# copy running-config startup-config**
+
+**OR** 
+
+**sw1# write memory** 	or **sw1# wr**
+
+
+
+**To TFTP Server backup**
+
+**sw1# copy running-config tftp:**		(enter the remote server ip address and destination file name when prompted)
+
+
+
+**To ftp server backup**
+
+**sw1# configure terminal**
+
+**sw1(config)# ip ftp username <username>**
+
+**sw1(config)# ip ftp password <password>**
+
+**SW1(config)# end**
+
+**sw1# copy running-config ftp:**		(enter the ftp server ip and destination file name when prompted).
+
+
+
+**Automated backup (kron scheduler)**
+
+**sw1(config)# kron policy-list BackupPolicy**
+
+**sw1(config-kron-policy)# cli running-config tftp://192.168.1.100/router-backup.cfg**
+
+**sw1#(config-kron-policy)# exit**
+
+
+
+**sw1(config)# kron occurrence DailyBackup at 23:00 recurring**
+
+**sw1(config-kron-occurrence)# policy-list BackupPolicy**
+
+**sw1(config-kron-occurrence)# end**
+
+
+
+
+
+
+
+**Reset a CISCO switch Configuration**
+
+**Option one:**
+
+**sw1# write erase**
+
+**sw# delete flash:vlan.dat**		(delete  the vlan.dat file with the existing VLAN info )
+
+**sw# reload**
+
+
+
+Option two:
+
+**sw1# erese startup-config**
+
+**sw# delete flash:vlan.dat**
+
+**sw# reload**
 
 
 
@@ -121,18 +197,28 @@ virtual terminal(VYT) to allow access using protocols like SSH or Telnet
 
 **#show ipv6 interface** 		Display the IPV6 stats for all interface on router)
 
+**# show running-config**		(Display the active running configuration)
+
+**# show version**
+
+**# show mac address-table**
+
+**# show interface status**
+
+**# show vlan brief**
+
+**# show startup-config**
 
 
 
-
-Basic CISCO switch configuration workflow
+**Basic CISCO switch configuration workflow**
 
 1. Power on
 2. connect via console
 3. enter enable mode 
 4. configure terminal
 5. set hostname
-6. configure password 
+6. configure password
 7. set management IP address
 8. save configuration
 
@@ -142,7 +228,7 @@ Basic CISCO switch configuration workflow
 
 **Other Switch commands** 
 
-**(config-line)# logging synchronous** 		(prevent system log(syslog) and status sms from interrupting the command line while you are typing)
+**(config-line)# logging synchronous** 		(prevent system log(syslog) and status SMS from interrupting the command line while you are typing)
 
 **(config-line)# exec-timeout 10 15**		(after 10min and 15sec inactivity session is timeout.)
 
@@ -153,4 +239,26 @@ Basic CISCO switch configuration workflow
 \#write 		(to save all the configuration)
 
 \# logout 	(logout of the session or end session)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
