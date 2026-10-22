@@ -169,6 +169,94 @@ switch>
 
 7\. Disable unused ports
 
+&#x20;   to reduce risk of someone plugging an unauthorized device into an active network port.
+
+&#x09;sw1#configure terminal
+
+&#x09;sw1(config) vlan 999
+
+&#x09;sw1(config-vlan)# name UNUSED\_PORTS
+
+&#x09;sw1(config-vlan)# exit
+
+&#x20;   Assign the unused ports to VLAN 999 and disable them
+
+&#x09;sw1(config)# interface range fastEthernet 0/43 - 48
+
+&#x09;sw1(config-if-range)# description UNUSED\_PORTS
+
+&#x09;sw1(config-if-range)# switchport mode access
+
+&#x09;sw1(config-if-range)# switchport access vlan 999
+
+&#x09;sw1(config-if-range)# shutdown
+
+&#x09;sw1(config-if-range)# exit
+
+
+
+8\. Configure the Gigabit uplink port
+
+&#x20;   In this they are reserved for router or switch connection. If not in use then should be disabled
+
+&#x09;sw1# configure terminal
+
+&#x09;sw1(config)# interface range gigabitEthernet 0/1 - 2
+
+&#x09;sw1(config-if-range)# description RESERVED\_UPLINK
+
+&#x09;sw1(config-if-range)# shutdown
+
+&#x09;sw1(config-if-range)# end
+
+
+
+&#x09;Connection of a trunk incase there was two or more switches of IEEE802.1Q
+
+&#x09;sw1#configure terminal
+
+&#x09;sw1(config)# interface gigabitEthernet 0/1
+
+&#x09;sw1(config-if)# description TRUNK\_TO\_ROUTER
+
+&#x09;sw1(config-if)# switchport mode trunk
+
+&#x09;sw1(config-if)# switchport trunk allowed vlan 10,20,30
+
+&#x09;sw1(config-if)# no shutdown
+
+&#x09;sw1(config-if)# end
+
+
+
+9\. Configure a management IP address(optional)
+
+&#x20;   Giving the switch management IP address for remote access(for this use an address within the ICT subnet)
+
+&#x09;sw1# configure terminal
+
+&#x09;sw1(config)# interface vlan 10
+
+&#x09;sw1(config-if)# ip address 192.168.10.2 255.255.255.0
+
+&#x09;sw1(config-if)# no shutdown
+
+&#x09;sw1(config-if)# end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
