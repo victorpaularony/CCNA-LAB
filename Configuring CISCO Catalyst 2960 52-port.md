@@ -129,9 +129,49 @@ switch>
 
 &#x09;sw1(config-if-range)# switchport access vlan 10
 
+&#x09;sw1(config-if-range)# spanning-tree portfast		(enable endpoint port ports to transition to forwarding quickly on ports connected to end devices not switch-to-switch link)
+
+&#x09;sw1(config-if-range)# end
+
+
+
+5\. Assign 14 ports to HR
+
+&#x09;sw1#configure terminal
+
+&#x09;sw1(config)# interface range fastEthernet 0/15 - 28
+
+&#x09;sw1(config-if-range)# description HR\_DEPARTMRNT
+
+&#x09;sw1(config-if-range)# switchport access vlan 20
+
 &#x09;sw1(config-if-range)# spanning-tree portfast
 
 &#x09;sw1(config-if-range)# end
+
+
+
+6\. Assign 14 ports to SALEs
+
+&#x09;sw1#configure terminal
+
+&#x09;sw1(config)# interface range fastEthernet 0/15 - 28
+
+&#x09;sw1(config-if-range)# description SALES\_DEPARTMRNT
+
+&#x09;sw1(config-if-range)# switchport access vlan 30
+
+&#x09;sw1(config-if-range)# spanning-tree portfast
+
+&#x09;sw1(config-if-range)# end
+
+
+
+7\. Disable unused ports
+
+
+
+
 
 
 
