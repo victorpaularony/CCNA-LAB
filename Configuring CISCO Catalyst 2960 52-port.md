@@ -229,7 +229,7 @@ switch>
 
 
 
-9\. Configure a management IP address(optional)
+9\. Configure a management IP address
 
 &#x20;   Giving the switch management IP address for remote access(for this use an address within the ICT subnet)
 
@@ -242,42 +242,4 @@ switch>
 &#x09;sw1(config-if)# no shutdown
 
 &#x09;sw1(config-if)# end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
