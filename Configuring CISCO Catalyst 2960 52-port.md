@@ -243,3 +243,115 @@ switch>
 
 &#x09;sw1(config-if)# end
 
+
+
+&#x09;sw1(config)# ip default-gateway 192.168,.10.1		(configure this only if a router or layer 3  device is actually at the specified address)
+
+
+
+&#x20;   Enable secure SSH management 
+
+&#x09;sw1# configure terminal 
+
+&#x09;sw1(config)# line vty 0 4
+
+&#x09;sw1(config-line)# transport input ssh telnet
+
+&#x09;sw1(config-line)# exit
+
+
+
+10\. Verify the entire configuration 
+
+&#x09;sw1# show vlan brief
+
+
+
+```
+
+VLAN Name                             Status    Ports
+
+\---- -------------------------------- --------- -------------------------
+
+1    default                          active
+
+10   ICT                              active    Fa0/1, Fa0/2, ... Fa0/14
+
+20   HR                               active    Fa0/15, Fa0/16, ... Fa0/28
+
+30   SALES                            active    Fa0/29, Fa0/30, ... Fa0/42
+
+999  UNUSED\_PORTS                     active    Fa0/43, ... Fa0/48
+
+```
+
+&#x09;sw1# show interface status		(department ports are assigned to correct VLANs, unused ports disabled)
+
+&#x09;sw1# show running-config interface fastEthernet 0/1		(verify the individual configuration for port 1 and other ports it 1 is replaced)
+
+&#x09;sw1# show interface trunk 		
+
+&#x09;sw1# show ip interface brief		(check the management SVI)
+
+
+
+
+
+11\. Test the network using PCs
+
+&#x20;    by now the inter-VLAN routing is not yet configured 
+
+&#x09;cmd> ping 192.168.19.11		(check the vlans connection(return success) and inter vlan connections(should return failed))
+
+
+
+
+
+12\. Save the configuration
+
+&#x09;sw1# copy running-config startup-config
+
+&#x09;Destination filename \[startup-config]? 		(press enter)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
